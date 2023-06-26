@@ -1,5 +1,6 @@
 package com.macwac.olddiscovery;
 
+import com.macwac.olddiscovery.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -29,14 +30,17 @@ public class OldDiscovery
     public OldDiscovery()
     {
         // Register the setup method for modloading
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.addListener(this::setup);
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModItems.register(eventBus);
+
+        eventBus.addListener(this::setup);
         // Register the enqueueIMC method for modloading
-        modEventBus.addListener(this::enqueueIMC);
+        eventBus.addListener(this::enqueueIMC);
         // Register the processIMC method for modloading
-        modEventBus.addListener(this::processIMC);
+        eventBus.addListener(this::processIMC);
         // Register the doClientStuff method for modloading
-        modEventBus.addListener(this::doClientStuff);
+        eventBus.addListener(this::doClientStuff);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
