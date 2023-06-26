@@ -4,5 +4,5 @@ import net.minecraft.item.ItemGroup;
 
 public class ModItemGroup {
 
-    public static final ItemGroup
+    //public static final ItemGroup
 }
