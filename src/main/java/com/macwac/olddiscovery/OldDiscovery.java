@@ -1,5 +1,6 @@
 package com.macwac.olddiscovery;
 
+import com.macwac.olddiscovery.block.ModBlocks;
 import com.macwac.olddiscovery.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -33,6 +34,7 @@ public class OldDiscovery
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(eventBus);
+        ModBlocks.register(eventBus);
 
         eventBus.addListener(this::setup);
         // Register the enqueueIMC method for modloading
