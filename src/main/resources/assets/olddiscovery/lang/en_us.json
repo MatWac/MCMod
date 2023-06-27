@@ -1,12 +1,12 @@
 {
   "item.olddiscovery.battery": "Battery",
-  "item.olddiscovery.copper_ingot": "Copper ingot",
+  "item.olddiscovery.copper_ingot": "Copper Ingot",
   "item.olddiscovery.lithium": "Lithium",
-  "item.olddiscovery.lithium_bar": "Lithium bar",
+  "item.olddiscovery.lithium_ingot": "Lithium Ingot",
   "item.olddiscovery.scanner": "Scanner",
 
-  "block.olddiscovery.copper_ore": "Copper ore",
-  "block.olddiscovery.lithium_ore": "Lithium ore",
+  "block.olddiscovery.copper_ore": "Copper Ore",
+  "block.olddiscovery.lithium_ore": "Lithium Ore",
 
   "itemGroup.oldDiscoveryTab": "Old Discovery"
 }

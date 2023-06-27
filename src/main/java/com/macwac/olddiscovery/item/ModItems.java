@@ -23,8 +23,8 @@ public class ModItems
             ITEMS.register("lithium", () -> new Item(new Item.Properties()
                     .group(ModItemGroup.OLD_DISCOVERY_GROUP)));
 
-    public static final RegistryObject<Item> LITHIUM_BAR =
-            ITEMS.register("lithium_bar", () -> new Item(new Item.Properties()
+    public static final RegistryObject<Item> LITHIUM_INGOT =
+            ITEMS.register("lithium_ingot", () -> new Item(new Item.Properties()
                     .group(ModItemGroup.OLD_DISCOVERY_GROUP)));
 
     public static final RegistryObject<Item> SCANNER =
