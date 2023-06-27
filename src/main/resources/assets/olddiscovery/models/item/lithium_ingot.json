@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "olddiscovery:item/lithium_bar"
+    "layer0": "olddiscovery:item/lithium_ingot"
   }
 }
