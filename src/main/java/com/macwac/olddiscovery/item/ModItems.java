@@ -13,13 +13,20 @@ public class ModItems
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, OldDiscovery.MOD_ID);
 
-    public static final RegistryObject<Item> SCANNER = ITEMS.register("scanner",
-            () -> new Item(new Item.Properties().group(ModItemGroup.OLD_DISCOVERY_GROUP)));
+    public static final RegistryObject<Item> SCANNER =
+            ITEMS.register("scanner", () -> new Item(new Item.Properties()
+                    .group(ModItemGroup.OLD_DISCOVERY_GROUP)
+                    .maxStackSize(1)));
+
+    public static final RegistryObject<Item> CELL =
+            ITEMS.register("cell", () -> new Item(new Item.Properties()
+                    .group(ModItemGroup.OLD_DISCOVERY_GROUP)));
 
     public static void register(IEventBus eventBus)
     {
         ITEMS.register(eventBus);
     }
+
 
 }
 
