@@ -29,6 +29,7 @@ public class ModItems
     public static final RegistryObject<Item> LITHIUM_BAR =
             ITEMS.register("lithium bar", () -> new Item(new Item.Properties()
                     .group(ModItemGroup.OLD_DISCOVERY_GROUP)));
+
     public static final RegistryObject<Item> COPPER_INGOT =
             ITEMS.register("copper ingot", () -> new Item(new Item.Properties()
                     .group(ModItemGroup.OLD_DISCOVERY_GROUP)));
