@@ -1,8 +1,3 @@
 {
-  "parent": "olddiscovery:block/lithium_ore",
-  "textures": {
-    "top": "minecraft:block/sandstone_top",
-    "bottom": "minecraft:block/sandstone_bottom",
-    "side": "minecraft:block/lithium_ore"
-  }
+  "parent": "olddiscovery:block/lithium_ore"
 }
