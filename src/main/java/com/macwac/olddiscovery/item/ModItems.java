@@ -18,8 +18,8 @@ public class ModItems
                     .group(ModItemGroup.OLD_DISCOVERY_GROUP)
                     .maxStackSize(1)));
 
-    public static final RegistryObject<Item> CELL =
-            ITEMS.register("cell", () -> new Item(new Item.Properties()
+    public static final RegistryObject<Item> BATTERY =
+            ITEMS.register("battery", () -> new Item(new Item.Properties()
                     .group(ModItemGroup.OLD_DISCOVERY_GROUP)));
 
     public static final RegistryObject<Item> LITHIUM =
