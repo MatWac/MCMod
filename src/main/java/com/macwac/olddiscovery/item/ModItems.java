@@ -22,6 +22,17 @@ public class ModItems
             ITEMS.register("cell", () -> new Item(new Item.Properties()
                     .group(ModItemGroup.OLD_DISCOVERY_GROUP)));
 
+    public static final RegistryObject<Item> LITHIUM =
+            ITEMS.register("lithium", () -> new Item(new Item.Properties()
+                    .group(ModItemGroup.OLD_DISCOVERY_GROUP)));
+
+    public static final RegistryObject<Item> LITHIUM_BAR =
+            ITEMS.register("lithium bar", () -> new Item(new Item.Properties()
+                    .group(ModItemGroup.OLD_DISCOVERY_GROUP)));
+    public static final RegistryObject<Item> COPPER_INGOT =
+            ITEMS.register("copper ingot", () -> new Item(new Item.Properties()
+                    .group(ModItemGroup.OLD_DISCOVERY_GROUP)));
+
     public static void register(IEventBus eventBus)
     {
         ITEMS.register(eventBus);
