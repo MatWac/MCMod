@@ -1,3 +1,5 @@
 {
-  "item.olddiscovery.scanner": "Scanner"
+  "item.olddiscovery.scanner": "Scanner",
+
+  'itemGroup.oldDiscoveryTab': 'Old Discovery'
 }

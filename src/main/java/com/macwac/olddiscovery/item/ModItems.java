@@ -14,13 +14,12 @@ public class ModItems
             DeferredRegister.create(ForgeRegistries.ITEMS, OldDiscovery.MOD_ID);
 
     public static final RegistryObject<Item> SCANNER = ITEMS.register("scanner",
-            () -> new Item(new Item.Properties().group(ItemGroup.MATERIALS)));
+            () -> new Item(new Item.Properties().group(ModItemGroup.OLD_DISCOVERY_GROUP)));
 
     public static void register(IEventBus eventBus)
     {
         ITEMS.register(eventBus);
     }
-
 
 }
 
