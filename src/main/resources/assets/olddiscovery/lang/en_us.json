@@ -8,5 +8,10 @@
   "block.olddiscovery.copper_ore": "Copper Ore",
   "block.olddiscovery.lithium_ore": "Lithium Ore",
 
-  "itemGroup.oldDiscoveryTab": "Old Discovery"
+  "itemGroup.oldDiscoveryTab": "Old Discovery",
+
+  "information.olddiscovery.ruins" : "§8§kOldDiscovery §r§2Vestiges have been detected §8§kOldDiscovery ",
+
+  "tooltip.olddiscovery.scanner_shift" : "Hold §e§lSHIFT §rfor more Information!",
+  "tooltip.olddiscovery.scanner" : "Detects vestiges in the chunk you're in\nRight click on a block to use"
 }
