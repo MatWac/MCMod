@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "FLF",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "olddiscovery:copper_ingot"
+    },
+    "F": {
+      "item": "minecraft:iron_ingot"
+    },
+    "L": {
+      "item": "olddiscovery:lithium_ingot"
+    }
+  },
+  "result": {
+    "item": "olddiscovery:battery"
+  }
+}

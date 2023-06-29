@@ -9,7 +9,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -27,28 +29,19 @@ public class Scanner extends Item {
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-
-        World world = context.getWorld();
-        PlayerEntity player = Objects.requireNonNull(context.getPlayer());
-        ItemStack stack = context.getItem();
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity playerEntity, Hand hand) {
 
         if (!world.isRemote) {
-            BlockPos pos = context.getPos();
 
             // Charge le chunk du joueur
-            if (world.getChunkProvider().isChunkLoaded(new ChunkPos(pos))) {
+            if (world.getChunkProvider().isChunkLoaded(new ChunkPos(playerEntity.getPosition()))) {
                 // Détection des ruines dans le chunk du joueur
-                scanChunk(pos.getX() >> 4, pos.getZ() >> 4, player);
+                scanChunk(playerEntity.getPosition().getX() >> 4, playerEntity.getPosition().getZ() >> 4, playerEntity);
             }
-
-            // Réduit la durabilité de l'item
-            stack.damageItem(1, player, playerEntity -> playerEntity.sendBreakAnimation(context.getHand()));
         }
 
-        return super.onItemUse(context);
+        return super.onItemRightClick(world, playerEntity, hand);
     }
-
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
@@ -84,11 +77,5 @@ public class Scanner extends Item {
                 }
             }
         }
-    }
-
-    @Override
-    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-        // Vérifie si le matériau de réparation est une pile
-        return repair.isItemEqual(new ItemStack(ModItems.BATTERY.get(), 3));
     }
 }

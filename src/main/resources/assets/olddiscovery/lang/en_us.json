@@ -13,5 +13,5 @@
   "information.olddiscovery.ruins" : "§8§kOldDiscovery §r§2Vestiges have been detected §8§kOldDiscovery ",
 
   "tooltip.olddiscovery.scanner_shift" : "Hold §e§lSHIFT §rfor more Information!",
-  "tooltip.olddiscovery.scanner" : "Detects vestiges in the chunk you're in\nRight click on a block to use"
+  "tooltip.olddiscovery.scanner" : "Detects vestiges in the chunk you're in\nRight click to use"
 }
