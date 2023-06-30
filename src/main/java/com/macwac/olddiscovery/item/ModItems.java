@@ -32,7 +32,7 @@ public class ModItems
             ITEMS.register("scanner", () -> new Scanner(new Item.Properties()
                     .group(ModItemGroup.OLD_DISCOVERY_GROUP)
                     .maxStackSize(1)
-                    .maxDamage(300)));
+                    .maxDamage(50)));
 
     public static void register(IEventBus eventBus)
     {
