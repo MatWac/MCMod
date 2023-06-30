@@ -5,8 +5,13 @@
       "item": "olddiscovery:scanner"
     },
     {
-      "item": "olddiscovery:battery",
-      "amount": 3
+      "item": "olddiscovery:battery"
+    },
+    {
+      "item": "olddiscovery:battery"
+    },
+    {
+      "item": "olddiscovery:battery"
     }
   ],
   "result": {
