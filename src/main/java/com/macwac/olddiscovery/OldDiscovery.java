@@ -2,6 +2,7 @@ package com.macwac.olddiscovery;
 
 import com.macwac.olddiscovery.block.ModBlocks;
 import com.macwac.olddiscovery.item.ModItems;
+import com.macwac.olddiscovery.world.structure.ModStructures;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -35,6 +36,7 @@ public class OldDiscovery
 
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModStructures.register(eventBus);
 
         eventBus.addListener(this::setup);
         // Register the enqueueIMC method for modloading
