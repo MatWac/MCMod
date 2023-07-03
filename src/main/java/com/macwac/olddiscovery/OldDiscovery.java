@@ -55,6 +55,8 @@ public class OldDiscovery
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+
+        ModStructures.setupStructures();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event)

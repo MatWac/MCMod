@@ -1,11 +1,11 @@
 {
-  "name": "olddiscovery:house/start_pool",
+  "name": "olddiscovery:oasis/start_pool",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
-        "location": "olddiscovery:house",
+        "location": "olddiscovery:oasis",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

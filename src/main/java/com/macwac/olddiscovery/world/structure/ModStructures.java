@@ -14,6 +14,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class ModStructures
@@ -32,8 +33,8 @@ public class ModStructures
     {
         setupMapSpacingAndLand(OASIS.get(),
                 new StructureSeparationSettings(
-                        100,
-                        50,
+                        1,
+                        1,
                         1234567890),
                         true);
     }
