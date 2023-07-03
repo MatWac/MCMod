@@ -31,8 +31,8 @@ public class ModStructures {
     public static void setupStructures() {
         setupMapSpacingAndLand(OASIS.get(),
                 new StructureSeparationSettings(
-                        1,
-                        1,
+                        10,
+                        5,
                         1234567890),
                 true);
     }
