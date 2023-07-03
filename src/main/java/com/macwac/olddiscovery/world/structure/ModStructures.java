@@ -17,8 +17,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ModStructures
-{
+public class ModStructures {
     public static final DeferredRegister<Structure<?>> STRUCTURES =
             DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, OldDiscovery.MOD_ID);
 
@@ -29,14 +28,13 @@ public class ModStructures
     /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/
     /* this modifies the seed of the structure so no two structures always spawn over each-other.
     Make this large and unique. */
-    public static void setupStructures()
-    {
+    public static void setupStructures() {
         setupMapSpacingAndLand(OASIS.get(),
                 new StructureSeparationSettings(
                         1,
                         1,
                         1234567890),
-                        true);
+                true);
     }
 
     /**
@@ -45,10 +43,8 @@ public class ModStructures
      * this method in the structureSeparationSettings argument.
      * This method is called by setupStructures above.
      **/
-    public static <F extends Structure<?>> void setupMapSpacingAndLand(F structure,
-                                                                       StructureSeparationSettings structureSeparationSettings,
-                                                                       boolean transformSurroundingLand)
-    {
+    public static <F extends Structure<?>> void setupMapSpacingAndLand(F structure, StructureSeparationSettings structureSeparationSettings,
+                                                                       boolean transformSurroundingLand) {
         //add our structures into the map in Structure class
         Structure.NAME_STRUCTURE_BIMAP.put(structure.getRegistryName().toString(), structure);
 
@@ -58,8 +54,7 @@ public class ModStructures
          * Doesn't work well on structure that have pieces stacked vertically or change in heights.
          *
          */
-        if (transformSurroundingLand)
-        {
+        if (transformSurroundingLand) {
             Structure.field_236384_t_ = ImmutableList.<Structure<?>>builder()
                     .addAll(Structure.field_236384_t_)
                     .add(structure)
