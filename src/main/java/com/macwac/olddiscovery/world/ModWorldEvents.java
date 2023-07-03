@@ -62,8 +62,13 @@ public class ModWorldEvents {
             // Adding our Structure to the Map
             Map<Structure<?>, StructureSeparationSettings> tempMap =
                     new HashMap<>(serverWorld.getChunkProvider().generator.func_235957_b_().func_236195_a_());
+
             tempMap.putIfAbsent(ModStructures.OASIS.get(),
                     DimensionStructuresSettings.field_236191_b_.get(ModStructures.OASIS.get()));
+            serverWorld.getChunkProvider().generator.func_235957_b_().field_236193_d_ = tempMap;
+
+            tempMap.putIfAbsent(ModStructures.TOWER_RUINS.get(),
+                    DimensionStructuresSettings.field_236191_b_.get(ModStructures.TOWER_RUINS.get()));
             serverWorld.getChunkProvider().generator.func_235957_b_().field_236193_d_ = tempMap;
         }
     }

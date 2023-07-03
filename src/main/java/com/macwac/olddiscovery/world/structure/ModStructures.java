@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.macwac.olddiscovery.OldDiscovery;
 import com.macwac.olddiscovery.world.structure.structures.OasisStructure;
+import com.macwac.olddiscovery.world.structure.structures.TowerRuinsStructure;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -24,6 +25,9 @@ public class ModStructures {
     public static final RegistryObject<Structure<NoFeatureConfig>> OASIS =
             STRUCTURES.register("oasis", OasisStructure::new);
 
+    public static final RegistryObject<Structure<NoFeatureConfig>> TOWER_RUINS =
+            STRUCTURES.register("tower_ruins", TowerRuinsStructure::new);
+
     /* average distance apart in chunks between spawn attempts */
     /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/
     /* this modifies the seed of the structure so no two structures always spawn over each-other.
@@ -35,7 +39,15 @@ public class ModStructures {
                         5,
                         1234567890),
                 true);
+
+        setupMapSpacingAndLand(TOWER_RUINS.get(),
+                new StructureSeparationSettings(
+                        10,
+                        5,
+                        1234567890),
+                true);
     }
+
 
     /**
      * Adds the provided structure to the registry, and adds the separation settings.
