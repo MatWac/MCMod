@@ -36,14 +36,12 @@ public class ModWorldEvents {
 
     @SubscribeEvent
     public static void addDimensionalSpacing(final WorldEvent.Load event) {
-        if(event.getWorld() instanceof ServerWorld) {
+        if (event.getWorld() instanceof ServerWorld) {
             ServerWorld serverWorld = (ServerWorld) event.getWorld();
 
             try {
-                Method GETCODEC_METHOD =
-                        ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
-                ResourceLocation cgRL = Registry.CHUNK_GENERATOR_CODEC.getKey(
-                        (Codec<? extends ChunkGenerator>)GETCODEC_METHOD.invoke(serverWorld.getChunkProvider().generator));
+                Method GET_CODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
+                ResourceLocation cgRL = Registry.CHUNK_GENERATOR_CODEC.getKey((Codec<? extends ChunkGenerator>) GET_CODEC_METHOD.invoke(serverWorld.getChunkProvider().generator));
 
                 if (cgRL != null && cgRL.getNamespace().equals("terraforged")) {
                     return;
@@ -54,22 +52,17 @@ public class ModWorldEvents {
             }
 
             // Prevent spawning our structure in Vanilla's superflat world
-            if (serverWorld.getChunkProvider().generator instanceof FlatChunkGenerator &&
-                    serverWorld.getDimensionKey().equals(World.OVERWORLD)) {
+            if (serverWorld.getChunkProvider().generator instanceof FlatChunkGenerator && serverWorld.getDimensionKey().equals(World.OVERWORLD)) {
                 return;
             }
 
             // Adding our Structure to the Map
-            Map<Structure<?>, StructureSeparationSettings> tempMap =
-                    new HashMap<>(serverWorld.getChunkProvider().generator.func_235957_b_().func_236195_a_());
+            Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkProvider().generator.func_235957_b_().func_236195_a_());
+            tempMap.putIfAbsent(ModStructures.OASIS.get(), DimensionStructuresSettings.field_236191_b_.get(ModStructures.OASIS.get()));
+            tempMap.putIfAbsent(ModStructures.TOWER_RUINS.get(), DimensionStructuresSettings.field_236191_b_.get(ModStructures.TOWER_RUINS.get()));
 
-            tempMap.putIfAbsent(ModStructures.OASIS.get(),
-                    DimensionStructuresSettings.field_236191_b_.get(ModStructures.OASIS.get()));
-            serverWorld.getChunkProvider().generator.func_235957_b_().field_236193_d_ = tempMap;
-
-            tempMap.putIfAbsent(ModStructures.TOWER_RUINS.get(),
-                    DimensionStructuresSettings.field_236191_b_.get(ModStructures.TOWER_RUINS.get()));
             serverWorld.getChunkProvider().generator.func_235957_b_().field_236193_d_ = tempMap;
         }
     }
+
 }

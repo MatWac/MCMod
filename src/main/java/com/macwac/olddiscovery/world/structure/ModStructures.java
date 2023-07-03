@@ -42,9 +42,9 @@ public class ModStructures {
 
         setupMapSpacingAndLand(TOWER_RUINS.get(),
                 new StructureSeparationSettings(
-                        10,
-                        5,
-                        1234567890),
+                        15,
+                        8,
+                        987654321),
                 true);
     }
 
