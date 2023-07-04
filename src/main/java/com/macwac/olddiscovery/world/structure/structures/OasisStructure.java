@@ -114,8 +114,8 @@ public class OasisStructure extends Structure<NoFeatureConfig> {
                     blockpos, this.components, this.rand,false,true);
 
             // Ajuster la position des pièces pour les placer correctement dans le monde
-            this.components.forEach(piece -> piece.offset(0, 1, 0));
-            this.components.forEach(piece -> piece.getBoundingBox().minY -= 1);
+            this.components.forEach(piece -> piece.offset(0, -4, 0));
+            this.components.forEach(piece -> piece.getBoundingBox().minY -= 4);
 
             // Recalculer la taille de la structure
             this.recalculateStructureSize();

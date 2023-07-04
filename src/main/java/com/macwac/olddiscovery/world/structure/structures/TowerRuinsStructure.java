@@ -115,8 +115,8 @@ public class TowerRuinsStructure extends Structure<NoFeatureConfig>
                     blockpos, this.components, this.rand, false, true);
 
             // Ajuste la position des pièces pour les placer correctement dans le monde
-            this.components.forEach(piece -> piece.offset(0, 0, 0));
-            this.components.forEach(piece -> piece.getBoundingBox().minY -= 3);
+            this.components.forEach(piece -> piece.offset(0, -4, 0));
+            this.components.forEach(piece -> piece.getBoundingBox().minY -= 4);
 
             // Recalcule la taille de la structure
             this.recalculateStructureSize();
