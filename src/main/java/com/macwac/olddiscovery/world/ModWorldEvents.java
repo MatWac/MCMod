@@ -1,4 +1,5 @@
 package com.macwac.olddiscovery.world;
+
 import com.macwac.olddiscovery.OldDiscovery;
 import com.macwac.olddiscovery.world.gen.ModOreGeneration;
 import com.macwac.olddiscovery.world.gen.ModStructureGeneration;
@@ -27,19 +28,27 @@ import java.util.Map;
 @Mod.EventBusSubscriber(modid = OldDiscovery.MOD_ID)
 public class ModWorldEvents {
 
+    /**
+     * Événement de chargement du biome.
+     * Génère les structures et les minerais spécifiques au biome.
+     */
     @SubscribeEvent
     public static void biomeLoadingEvent(final BiomeLoadingEvent event) {
         ModStructureGeneration.generateStructures(event);
-
         ModOreGeneration.generateOres(event);
     }
 
+    /**
+     * Événement d'ajout de l'espacement dimensionnel.
+     * Ajoute les structures aux dimensions lors du chargement du monde.
+     */
     @SubscribeEvent
     public static void addDimensionalSpacing(final WorldEvent.Load event) {
         if (event.getWorld() instanceof ServerWorld) {
             ServerWorld serverWorld = (ServerWorld) event.getWorld();
 
             try {
+                // Vérifie si le ChunkGenerator utilise Terraforged
                 Method GET_CODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
                 ResourceLocation cgRL = Registry.CHUNK_GENERATOR_CODEC.getKey((Codec<? extends ChunkGenerator>) GET_CODEC_METHOD.invoke(serverWorld.getChunkProvider().generator));
 
@@ -51,12 +60,12 @@ public class ModWorldEvents {
                         + " is using Terraforged's ChunkGenerator.");
             }
 
-            // Prevent spawning our structure in Vanilla's superflat world
+            // Empêche la génération de notre structure dans le monde plat de base de Vanilla
             if (serverWorld.getChunkProvider().generator instanceof FlatChunkGenerator && serverWorld.getDimensionKey().equals(World.OVERWORLD)) {
                 return;
             }
 
-            // Adding our Structure to the Map
+            // Ajoute notre structure à la carte des structures de la dimension
             Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkProvider().generator.func_235957_b_().func_236195_a_());
             tempMap.putIfAbsent(ModStructures.OASIS.get(), DimensionStructuresSettings.field_236191_b_.get(ModStructures.OASIS.get()));
             tempMap.putIfAbsent(ModStructures.TOWER_RUINS.get(), DimensionStructuresSettings.field_236191_b_.get(ModStructures.TOWER_RUINS.get()));
@@ -64,5 +73,4 @@ public class ModWorldEvents {
             serverWorld.getChunkProvider().generator.func_235957_b_().field_236193_d_ = tempMap;
         }
     }
-
 }

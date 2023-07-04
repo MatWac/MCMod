@@ -19,53 +19,48 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ModStructures {
+    // Enregistrement différé des structures personnalisées
     public static final DeferredRegister<Structure<?>> STRUCTURES =
             DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, OldDiscovery.MOD_ID);
 
+    // Enregistrement différé de la structure Oasis
     public static final RegistryObject<Structure<NoFeatureConfig>> OASIS =
             STRUCTURES.register("oasis", OasisStructure::new);
 
+    // Enregistrement différé de la structure TowerRuins
     public static final RegistryObject<Structure<NoFeatureConfig>> TOWER_RUINS =
             STRUCTURES.register("tower_ruins", TowerRuinsStructure::new);
 
-    /* average distance apart in chunks between spawn attempts */
-    /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/
-    /* this modifies the seed of the structure so no two structures always spawn over each-other.
-    Make this large and unique. */
+    // Configuration des structures
     public static void setupStructures() {
+        // Configuration de la séparation et du placement de la structure Oasis
         setupMapSpacingAndLand(OASIS.get(),
                 new StructureSeparationSettings(
-                        10,
-                        5,
-                        1234567890),
-                true);
+                        10, // Distance moyenne en chunks entre les tentatives de spawn
+                        5,  // Distance minimale en chunks entre les tentatives de spawn
+                        1234567890), // Graine unique pour la structure
+                true); // Modification du terrain environnant pour correspondre à la base de la structure
 
+        // Configuration de la séparation et du placement de la structure TowerRuins
         setupMapSpacingAndLand(TOWER_RUINS.get(),
                 new StructureSeparationSettings(
-                        15,
-                        8,
-                        987654321),
-                true);
+                        15, // Distance moyenne en chunks entre les tentatives de spawn
+                        8,  // Distance minimale en chunks entre les tentatives de spawn
+                        987654321), // Graine unique pour la structure
+                true); // Modification du terrain environnant pour correspondre à la base de la structure
     }
 
-
     /**
-     * Adds the provided structure to the registry, and adds the separation settings.
-     * The rarity of the structure is determined based on the values passed into
-     * this method in the structureSeparationSettings argument.
-     * This method is called by setupStructures above.
+     * Ajoute la structure fournie au registre et configure les paramètres de séparation.
+     * La rareté de la structure est déterminée par les valeurs passées dans structureSeparationSettings.
+     * Cette méthode est appelée par la méthode setupStructures ci-dessus.
      **/
     public static <F extends Structure<?>> void setupMapSpacingAndLand(F structure, StructureSeparationSettings structureSeparationSettings,
                                                                        boolean transformSurroundingLand) {
-        //add our structures into the map in Structure class
+        // Ajout de la structure au registre
         Structure.NAME_STRUCTURE_BIMAP.put(structure.getRegistryName().toString(), structure);
 
-        /*
-         * Whether surrounding land will be modified automatically to conform to the bottom of the structure.
-         * Basically, it adds land at the base of the structure like it does for Villages and Outposts.
-         * Doesn't work well on structure that have pieces stacked vertically or change in heights.
-         *
-         */
+        // Modification du terrain environnant si transformSurroundingLand est true
         if (transformSurroundingLand) {
             Structure.field_236384_t_ = ImmutableList.<Structure<?>>builder()
                     .addAll(Structure.field_236384_t_)
@@ -73,45 +68,19 @@ public class ModStructures {
                     .build();
         }
 
-        /*
-         * This is the map that holds the default spacing of all structures.
-         * Always add your structure to here so that other mods can utilize it if needed.
-         *
-         * However, while it does propagate the spacing to some correct dimensions from this map,
-         * it seems it doesn't always work for code made dimensions as they read from this list beforehand.
-         *
-         * Instead, we will use the WorldEvent.Load event in ModWorldEvents to add the structure
-         * spacing from this list into that dimension or to do dimension blacklisting properly.
-         * We also use our entry in DimensionStructuresSettings.DEFAULTS in WorldEvent.Load as well.
-         *
-         * DEFAULTS requires AccessTransformer  (See resources/META-INF/accesstransformer.cfg)
-         */
+        // Ajout des paramètres de séparation au registre des structures par défaut
         DimensionStructuresSettings.field_236191_b_ =
                 ImmutableMap.<Structure<?>, StructureSeparationSettings>builder()
                         .putAll(DimensionStructuresSettings.field_236191_b_)
                         .put(structure, structureSeparationSettings)
                         .build();
 
-        /*
-         * There are very few mods that relies on seeing your structure in the
-         * noise settings registry before the world is made.
-         *
-         * You may see some mods add their spacings to DimensionSettings.BUILTIN_OVERWORLD instead of the
-         * NOISE_GENERATOR_SETTINGS loop below but that field only applies for the default overworld and
-         * won't add to other worldtypes or dimensions (like amplified or Nether).
-         * So yeah, don't do DimensionSettings.BUILTIN_OVERWORLD. Use the NOISE_GENERATOR_SETTINGS loop
-         * below instead if you must.
-         */
+        // Ajout des paramètres de séparation au registre des structures pour chaque générateur de bruit
         WorldGenRegistries.NOISE_SETTINGS.getEntries().forEach(settings -> {
             Map<Structure<?>, StructureSeparationSettings> structureMap =
                     settings.getValue().getStructures().func_236195_a_();
-            /*
-             * Pre-caution in case a mod makes the structure map immutable like datapacks do.
-             * I take no chances myself. You never know what another mods does...
-             *
-             * structureConfig requires AccessTransformer  (See resources/META-INF/accesstransformer.cfg)
-             */
             if (structureMap instanceof ImmutableMap) {
+                // Crée une copie mutable du registre des structures si nécessaire
                 Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(structureMap);
                 tempMap.put(structure, structureSeparationSettings);
                 settings.getValue().getStructures().func_236195_a_();
@@ -122,6 +91,7 @@ public class ModStructures {
         });
     }
 
+    // Méthode d'enregistrement des structures sur le bus d'événements
     public static void register(IEventBus eventBus) {
         STRUCTURES.register(eventBus);
     }
