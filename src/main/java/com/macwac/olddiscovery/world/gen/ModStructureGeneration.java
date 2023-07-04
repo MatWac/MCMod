@@ -24,9 +24,10 @@ public class ModStructureGeneration {
             structures.add(() -> ModStructures.OASIS.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         }
 
-        if (types.contains(BiomeDictionary.Type.PLAINS)) {
-            List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+        BiomeDictionary.Type type = BiomeDictionary.Type.getType("PLAINS");
 
+        if (BiomeDictionary.hasType(key, type)) {
+            List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
             structures.add(() -> ModStructures.TOWER_RUINS.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         }
     }
